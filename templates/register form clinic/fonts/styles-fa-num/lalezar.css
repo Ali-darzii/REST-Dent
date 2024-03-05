@@ -1,0 +1,7 @@
+@font-face {
+	font-family: "lalezar-font";
+	src: url("../fa-num/lalezar-700.eot");
+	src: url("../fa-num/lalezar-700.eot?#iefix") format("embedded-opentype"),
+		 url("../fa-num/lalezar-700.ttf") format("truetype");
+	font-weight: 700;
+}

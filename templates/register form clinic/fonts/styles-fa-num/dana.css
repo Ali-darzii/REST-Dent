@@ -1,0 +1,16 @@
+@font-face {
+	font-family: "dana-font";
+	src: url("../fa-num/dana-400.eot");
+	src: url("../fa-num/dana-400.eot?#iefix") format("embedded-opentype"),
+		 url("../fa-num/dana-400.ttf") format("truetype");
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "dana-font";
+	src: url("../fa-num/dana-700.eot");
+	src: url("../fa-num/dana-700.eot?#iefix") format("embedded-opentype"),
+
+		 url("../fa-num/dana-700.ttf") format("truetype");
+	font-weight: 700;
+}

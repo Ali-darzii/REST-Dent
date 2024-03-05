@@ -1,0 +1,7 @@
+@font-face {
+	font-family: "aviny-font";
+	src: url("../fa-num/aviny-700.eot");
+	src: url("../fa-num/aviny-700.eot?#iefix") format("embedded-opentype"),
+		 url("../fa-num/aviny-700.ttf") format("truetype");
+	font-weight: 700;
+}
