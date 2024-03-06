@@ -10,11 +10,17 @@ from rest_framework_simplejwt.tokens import AccessToken, RefreshToken
 from django.contrib.auth import user_logged_in
 from rest_framework.decorators import action
 from utils.utils import ErrorResponses
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 
 class AuthView(APIView):
     allowed_methods = ['post', 'put']
 
+    @swagger_auto_schema(
+        operation_id='user_signup',
+        operation_description='not logged in and not account exist',
+    )
     @action(methods=['post'], detail=True)
     def post(self, request):
         """ signup """
