@@ -20,3 +20,4 @@ class ErrorResponses:
     USER_NOT_FOUND = {'detail': 'USER_NOT_FOUND', 'error_code': 6}
     OBJECT_NOT_FOUND = {'detail': 'OBJECT_NOT_FOUND', 'error_code': 7}
 
+

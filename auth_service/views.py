@@ -15,11 +15,30 @@ from drf_yasg import openapi
 
 
 class AuthView(APIView):
-    allowed_methods = ['post', 'put']
+    # line below not working with request body of swagger
+    # allowed_methods = ['post', 'put', 'get']
 
     @swagger_auto_schema(
+        method='POST',
         operation_id='user_signup',
-        operation_description='not logged in and not account exist',
+        operation_description='creating user (not logged in indeed)',
+        responses={201: openapi.Response(description='returning JWT',
+                                         schema=openapi.Schema(type=openapi.TYPE_OBJECT, properties={
+                                             'access_token': openapi.Schema(type=openapi.TYPE_STRING),
+                                             'refresh_token': openapi.Schema(type=openapi.TYPE_STRING),
+                                         }),
+
+                                         )},
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            required=['email', 'first_name', 'last_name', 'password'],
+            properties={
+                'email': openapi.Schema(type=openapi.TYPE_STRING),
+                'first_name': openapi.Schema(type=openapi.TYPE_STRING),
+                'last_name': openapi.Schema(type=openapi.TYPE_STRING),
+                'password': openapi.Schema(type=openapi.TYPE_STRING)
+            }
+        )
     )
     @action(methods=['post'], detail=True)
     def post(self, request):
@@ -39,10 +58,29 @@ class AuthView(APIView):
             "access_token": str(AccessToken.for_user(user)),
             "refresh_token": str(RefreshToken.for_user(user)),
         }
-
         return Response(data=data, status=status.HTTP_201_CREATED)
 
     # todo: how check with jwt that not authenticated !
+
+    @swagger_auto_schema(
+        method='PUT',
+        operation_id='user_login',
+        operation_description='login user (not logged in indeed)',
+        responses={200: openapi.Response(description='returning JWT',
+                                         schema=openapi.Schema(type=openapi.TYPE_OBJECT, properties={
+                                             'access_token': openapi.Schema(type=openapi.TYPE_STRING),
+                                             'refresh_token': openapi.Schema(type=openapi.TYPE_STRING),
+                                         }),
+                                         )},
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            required=['email', 'password'],
+            properties={
+                'email': openapi.Schema(type=openapi.TYPE_STRING),
+                'password': openapi.Schema(type=openapi.TYPE_STRING),
+            }
+        )
+    )
     @action(methods=['put'], detail=True)
     def put(self, request: Request):
         """ login """
@@ -68,11 +106,25 @@ class UserLogout(APIView):
     permission_classes = [IsAuthenticated]
 
     # without serializer
+
+    @swagger_auto_schema(
+        method='POST',
+        operation_id='user_logout',
+        operation_description='user logout (Authenticated in indeed)',
+        responses={204: openapi.Response(description='returning success')},
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            required=['refresh_token'],
+            properties={
+                'refresh_token': openapi.Schema(type=openapi.TYPE_STRING),
+            }
+        )
+    )
     @action(['post'], detail=True)
     def post(self, request: Request):
         """ logout user """
         try:
-            refresh_token = request.data['tk']
+            refresh_token = request.data['refresh_token']
             tk = RefreshToken(refresh_token)
             tk.blacklist()
             return Response(data='Successfully logged out.', status=status.HTTP_204_NO_CONTENT)
