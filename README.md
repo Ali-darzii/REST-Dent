@@ -38,7 +38,7 @@ source ./venv/bin/activate
 pip install -r requirements.txt
 ```
   
-```
+
 6.migrate to DB:
 ```zsh title="Terminal"
 python manage.py migrate
@@ -65,7 +65,6 @@ python -m venv vnev
 pip install -r requirements.txt
 ```
 
-```
 6.migrate to DB:
 ```zsh title="Terminal"
 python manage.py migrate
