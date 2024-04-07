@@ -8,29 +8,11 @@
 ### <img src="https://media.giphy.com/media/VgCDAzcKvsR6OM0uWg/giphy.gif" width="50"> instalation ...
 
 ## 🤝 Requirements
-0. redis
 
-1. Mysql
-
-2. install virtualenv
+0. install virtualenv
   ```bash
   pip install virtualenv
   ```
-
-
-3. let's make sure you have the following installed(it's only needed in linux):
-
-- in Debain:
-  ```bash
-  sudo apt-get install python3-dev default-libmysqlclient-dev build-essential pkg-config
-  ```
-- in Red Hat / CentOS:
-  ```zsh
-  sudo yum install python3-devel mysql-devel pkgconfig
-  ```
-- in Arch:
-  ```zsh
-  sudo pacman -S pkg-config
 
 ## 🚀 Installation
 
@@ -55,36 +37,13 @@ source ./venv/bin/activate
 ```zsh title="Terminal"
 pip install -r requirements.txt
 ```
-
-4.Mysql prompt:
-
-``` sql
-CREATE DATABASE chatCompany CHARACTER SET utf8;
-```
-5.go on /ChatCompany/setting.py:
-
-``` py
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'chatCompany',
-        'USER': '<enter_your_Mysql_username>',
-        'PASSWORD': '<Enter_your_Mysql_password>',
-        'OPTIONS': {
-        }
-    }
-}
+  
 ```
 6.migrate to DB:
 ```zsh title="Terminal"
 python manage.py migrate
 ```
 
-
-7.run redis(port:6379) :
-```zsh title="Terminal"
-sudo docker run redis
-```
 </details>
 
 <details>
@@ -106,24 +65,6 @@ python -m venv vnev
 pip install -r requirements.txt
 ```
 
-4.Mysql prompt:
-
-``` sql
-CREATE DATABASE chatCompany CHARACTER SET utf8;
-```
-5.on .\ChatCompany\setting.py:
-
-``` py
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'chatCompany',
-        'USER': '<enter_your_Mysql_username>',
-        'PASSWORD': '<Enter_your_Mysql_password>',
-        'OPTIONS': {
-        }
-    }
-}
 ```
 6.migrate to DB:
 ```zsh title="Terminal"
@@ -131,10 +72,6 @@ python manage.py migrate
 ```
 
 
-7.run redis(port:6379) or be in local :
-```cmd
-docker run --rm -p 6379:6379 redis:7
-```
 </details>
 
 
