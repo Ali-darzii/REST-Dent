@@ -29,7 +29,7 @@ class Patient(models.Model):
     user_logins = models.ForeignKey(UserLogins, on_delete=models.CASCADE, related_name='user_patient')
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} => {self.user}"
+        return f"{self.first_name} {self.last_name} => {self.user_logins.user}"
 
     class Meta:
         verbose_name = 'Patient'

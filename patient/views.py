@@ -7,7 +7,7 @@ from patient.serializer import PatientSerializer
 # todo: avatar system in REST
 
 class PatientAPIView(ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated,)
     serializer_class = PatientSerializer
     queryset = Patient.objects.all()
 
