@@ -48,7 +48,7 @@ python -m venv vnev
 2.active virtual environment:
 
 ```zsh title="Terminal"
-source venv/bin/activate
+source ./venv/bin/activate
 ```
 3.install requirements in virtual
 
@@ -98,7 +98,7 @@ python -m venv vnev
 2.active virtual environment:
 
 ```zsh title="Terminal"
-venv/Script/activate
+.\venv\Script\activate
 ```
 3.install requirements in virtual
 
@@ -111,7 +111,7 @@ pip install -r requirements.txt
 ``` sql
 CREATE DATABASE chatCompany CHARACTER SET utf8;
 ```
-5.on /ChatCompany/setting.py:
+5.on .\ChatCompany\setting.py:
 
 ``` py
 DATABASES = {
@@ -131,7 +131,7 @@ python manage.py migrate
 ```
 
 
-7.run redis(port:6379) :
+7.run redis(port:6379) or be in local :
 ```cmd
 docker run --rm -p 6379:6379 redis:7
 ```
