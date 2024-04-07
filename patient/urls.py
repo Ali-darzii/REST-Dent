@@ -3,9 +3,8 @@ from . import views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'api/read-only/patient', views.PatientReadOnlyView, basename='patientReadOnly')
+router.register(r'api/patient', views.PatientAPIView, basename='patient')
 urlpatterns = [
-    path('api/patient/', views.PatientAPIView.as_view()),
 
 ]
 urlpatterns += router.urls

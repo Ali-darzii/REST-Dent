@@ -1,6 +1,7 @@
 from django.db import models
 from auth_service.models import UserLogins
 
+
 # Create your models here.
 
 
@@ -25,9 +26,10 @@ class Patient(models.Model):
     emergency_contact = models.CharField(max_length=11, blank=True, null=True)
     time_stamp = models.DateTimeField(auto_now_add=True)
 
-    user = models.ForeignKey(UserLogins, on_delete=models.CASCADE, related_name='user_patient')
+    user_logins = models.ForeignKey(UserLogins, on_delete=models.CASCADE, related_name='user_patient')
+
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name} => {self.user}"
 
     class Meta:
         verbose_name = 'Patient'
