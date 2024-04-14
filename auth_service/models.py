@@ -11,7 +11,6 @@ class UserLogins(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_logins')
     no_logins = models.PositiveIntegerField(default=0)
     failed_attempts = models.PositiveIntegerField(default=0)
-
     # no_devices = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):

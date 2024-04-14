@@ -36,3 +36,37 @@ class Patient(models.Model):
         verbose_name_plural = 'Patients'
         db_table = 'Patient_DB'
         ordering = ('-time_stamp',)
+
+
+class Procedure(models.Model):
+    name = models.CharField(max_length=200)
+    amount = models.IntegerField(blank=True, null=True)
+    user_logins = models.ForeignKey(UserLogins, on_delete=models.CASCADE, related_name='procedure_login')
+
+    def __str__(self):
+        if self.amount is not None:
+            return self.name + " => " + str(self.amount)
+        return self.name
+
+    class Meta:
+        verbose_name = 'Procedure'
+        verbose_name_plural = 'Procedures'
+        db_table = 'Procedure_DB'
+
+
+class DentalChart(models.Model):
+    adult_tooth = models.JSONField(default=list)
+    pediatric_tooth = models.JSONField(default=list)
+    time_stamp = models.DateField()
+    text = models.TextField(blank=True, null=True)
+    procedure = models.ForeignKey(Procedure, on_delete=models.CASCADE, related_name='procedure_dental')
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='patient_dental')
+
+    def __str__(self):
+        return f"{self.patient.first_name} =>"
+
+    class Meta:
+        verbose_name = 'DentalChart'
+        verbose_name_plural = 'DentalCharts'
+        db_table = 'DentalChart_DB'
+        ordering = ('-time_stamp',)
